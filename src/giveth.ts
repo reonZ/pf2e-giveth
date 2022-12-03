@@ -1,9 +1,12 @@
+import { localize } from './@utils/foundry/i18n'
 import { warn } from './@utils/foundry/notifications'
+import { getSetting } from './@utils/foundry/settings'
+import { chatUUID } from './@utils/foundry/uuid'
 import { hasInvestedProperty } from './@utils/pf2e'
 import { socketEmit } from './@utils/socket'
 import { MoveLootPopup } from './apps/popup'
 
-export function transferItem({ ownerId, targetId, itemId, qty, stack }: GivethData) {
+export async function transferItem({ ownerId, targetId, itemId, qty, stack }: GivethData) {
     const owner = game.actors.get<ActorPF2e>(ownerId)
     const target = game.actors.get<ActorPF2e>(targetId)
     if (!owner || !target) return
@@ -21,10 +24,20 @@ export function transferItem({ ownerId, targetId, itemId, qty, stack }: GivethDa
         obj.system.equipped.invested = item.traits.has('invested') ? false : null
     }
 
+    const newItem = await target.addToInventory(obj, undefined, stack)
+    if (!newItem) return
+
     if (newQty < 1) item.delete()
     else item.update({ 'system.quantity': newQty })
 
-    target.addToInventory(obj, undefined, stack)
+    if (!getSetting('message')) return
+
+    const msg = qty > 1 ? 'notification.withQty' : 'notification.withoutQty'
+    const uuid = chatUUID(newItem.uuid)
+    ChatMessage.create({
+        content: localize(msg, { qty, item: uuid, target: target.name }),
+        speaker: ChatMessage.getSpeaker({ actor: owner }),
+    })
 }
 
 export function giveth(owner: ActorPF2e, target: ActorPF2e, item: PhysicalItemPF2e) {

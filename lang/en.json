@@ -1,6 +1,16 @@
 {
     "pf2e-giveth": {
         "physical": "Only physical items can be give.",
-        "zero": "You cannot give an item you don't have yourself."
+        "zero": "You cannot give an item you don't have yourself.",
+        "settings": {
+            "message": {
+                "name": "Chat Notification",
+                "hint": "When enabled, a chat message will be created with the details of the transaction."
+            }
+        },
+        "notification": {
+            "withQty": "Giveth {qty} {item} to <strong>{target}</strong>.",
+            "withoutQty": "Giveth {item} to <strong>{target}</strong>."
+        }
     }
 }
