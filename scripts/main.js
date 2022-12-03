@@ -8,6 +8,54 @@ function $b1861437201343a3$export$e086df5a71e51694(hook, fn) {
 }
 
 
+var $1623e5e7c705b7c7$export$2e2bcd8739ae039 = "pf2e-giveth";
+
+
+
+function $ee65ef5b7d5dd2ef$export$f6ed52839c6955bc(...path) {
+    return `${0, $1623e5e7c705b7c7$export$2e2bcd8739ae039}.settings.${path.join(".")}`;
+}
+function $ee65ef5b7d5dd2ef$export$79b67f6e2f31449(...path) {
+    return `flags.${0, $1623e5e7c705b7c7$export$2e2bcd8739ae039}.${path.join("/")}`;
+}
+function $ee65ef5b7d5dd2ef$export$bdd507c72609c24e(...path) {
+    return `modules/${0, $1623e5e7c705b7c7$export$2e2bcd8739ae039}/templates/${path.join("/")}`;
+}
+function $ee65ef5b7d5dd2ef$export$6d1a79e7c04100c2(...path) {
+    return `modules/${0, $1623e5e7c705b7c7$export$2e2bcd8739ae039}/images/${path.join("/")}`;
+}
+
+
+function $b29eb7e0eb12ddbc$export$8206e8d612b3e63(key) {
+    return game.settings.get((0, $1623e5e7c705b7c7$export$2e2bcd8739ae039), key);
+}
+function $b29eb7e0eb12ddbc$export$61fd6f1ddd0c20e2(key, value) {
+    return game.settings.set((0, $1623e5e7c705b7c7$export$2e2bcd8739ae039), key, value);
+}
+function $b29eb7e0eb12ddbc$export$3bfe3819d89751f0(options) {
+    const name = options.name;
+    options.scope = options.scope ?? "world";
+    options.config = options.config ?? false;
+    if (options.config) {
+        options.name = (0, $ee65ef5b7d5dd2ef$export$f6ed52839c6955bc)(name, "name");
+        options.hint = (0, $ee65ef5b7d5dd2ef$export$f6ed52839c6955bc)(name, "hint");
+    }
+    game.settings.register((0, $1623e5e7c705b7c7$export$2e2bcd8739ae039), name, options);
+}
+function $b29eb7e0eb12ddbc$export$cd2f7161e4d70860(options) {
+    const name = options.name;
+    options.name = (0, $ee65ef5b7d5dd2ef$export$f6ed52839c6955bc)("menus", name, "name");
+    options.label = (0, $ee65ef5b7d5dd2ef$export$f6ed52839c6955bc)("menus", name, "label");
+    options.hint = (0, $ee65ef5b7d5dd2ef$export$f6ed52839c6955bc)("menus", name, "hint");
+    options.restricted = options.restricted ?? true;
+    options.icon = options.icon ?? "fas fa-cogs";
+    game.settings.registerMenu((0, $1623e5e7c705b7c7$export$2e2bcd8739ae039), name, options);
+}
+function $b29eb7e0eb12ddbc$export$8cb4a6769fa1780e() {
+    return game.settings.get("core", "combatTrackerConfig");
+}
+
+
 function $d3c956a52a17449c$export$7d75da6d34f1a955() {
     const data = game.data;
     const user = data.users.find((x)=>x._id === data.userId);
@@ -26,8 +74,6 @@ function $d3c956a52a17449c$export$31d9ed870e9f0a1d(connected = false) {
     return game.users.find((x)=>x.isGM);
 }
 
-
-var $1623e5e7c705b7c7$export$2e2bcd8739ae039 = "pf2e-giveth";
 
 
 function $7d0b581a56a65cc7$export$38fd5ae0f7102bdb(callback) {
@@ -49,6 +95,7 @@ function $889355b5c39241f1$export$a2435eff6fb7f6c1(subKey) {
 }
 
 
+
 function $d20bc07084c62caf$export$5e14cdade93d6f7b(str, arg1, arg2, arg3) {
     const type = typeof arg1 === "string" ? arg1 : "info";
     const data = typeof arg1 === "object" ? arg1 : typeof arg2 === "object" ? arg2 : undefined;
@@ -65,6 +112,18 @@ function $d20bc07084c62caf$export$a80b3bd66acc52ff(str, arg1, arg2) {
 }
 function $d20bc07084c62caf$export$a3bc9b8ed74fc(str, arg1, arg2) {
     $d20bc07084c62caf$export$5e14cdade93d6f7b(str, "error", arg1, arg2);
+}
+
+
+
+function $3b07b3ae0f2d41b7$export$54f992c69bf0c22c(result) {
+    if (result.type === CONST.TABLE_RESULT_TYPES.DOCUMENT) return `${result.documentCollection}.${result.documentId}`;
+    if (result.type === CONST.TABLE_RESULT_TYPES.COMPENDIUM) return `Compendium.${result.documentCollection}.${result.documentId}`;
+    return undefined;
+}
+function $3b07b3ae0f2d41b7$export$20ab79f56cb5e678(uuid, name) {
+    if (name) return `@UUID[${uuid}]{${name}}`;
+    return `@UUID[${uuid}]`;
 }
 
 
@@ -342,7 +401,7 @@ class $8ec64a84f4ed3df5$export$f44f096daab04904 extends FormApplication {
 }
 
 
-function $7ad560a1e531e2cd$export$80a5fb0617c35094({ ownerId: ownerId , targetId: targetId , itemId: itemId , qty: qty , stack: stack  }) {
+async function $7ad560a1e531e2cd$export$80a5fb0617c35094({ ownerId: ownerId , targetId: targetId , itemId: itemId , qty: qty , stack: stack  }) {
     const owner = game.actors.get(ownerId);
     const target = game.actors.get(targetId);
     if (!owner || !target) return;
@@ -354,11 +413,25 @@ function $7ad560a1e531e2cd$export$80a5fb0617c35094({ ownerId: ownerId , targetId
     obj.system.quantity = qty;
     obj.system.equipped.carryType = "worn";
     if ((0, $1411bf92270cf048$export$d2ea10be675672b)(obj)) obj.system.equipped.invested = item.traits.has("invested") ? false : null;
+    const newItem = await target.addToInventory(obj, undefined, stack);
+    if (!newItem) return;
     if (newQty < 1) item.delete();
     else item.update({
         "system.quantity": newQty
     });
-    target.addToInventory(obj, undefined, stack);
+    if (!(0, $b29eb7e0eb12ddbc$export$8206e8d612b3e63)("message")) return;
+    const msg = qty > 1 ? "notification.withQty" : "notification.withoutQty";
+    const uuid = (0, $3b07b3ae0f2d41b7$export$20ab79f56cb5e678)(newItem.uuid);
+    ChatMessage.create({
+        content: (0, $889355b5c39241f1$export$b3bd0bc58e36cd63)(msg, {
+            qty: qty,
+            item: uuid,
+            target: target.name
+        }),
+        speaker: ChatMessage.getSpeaker({
+            actor: owner
+        })
+    });
 }
 function $7ad560a1e531e2cd$export$f865a57bfddad5bb(owner, target, item) {
     const qty = item.quantity;
@@ -440,6 +513,12 @@ function $e6fcaa473751f33b$export$77349932e6536f4d(packet) {
 
 
 Hooks.once("init", ()=>{
+    (0, $b29eb7e0eb12ddbc$export$3bfe3819d89751f0)({
+        name: "message",
+        type: Boolean,
+        default: true,
+        config: true
+    });
     if ((0, $d3c956a52a17449c$export$7d75da6d34f1a955)()) return;
     (0, $b1861437201343a3$export$e086df5a71e51694)("dropCanvasData", (0, $c5e8e0cfa8a822f8$export$817ceb6b274ad24));
     (0, $b1861437201343a3$export$e086df5a71e51694)("dropActorSheetData", (0, $026f2657de0e8ef5$export$ac56a867a4859d7c));
