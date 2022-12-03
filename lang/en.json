@@ -1,0 +1,6 @@
+{
+    "pf2e-giveth": {
+        "physical": "Only physical items can be give.",
+        "zero": "You cannot give an item you don't have yourself."
+    }
+}
