@@ -19,6 +19,7 @@ function $ee65ef5b7d5dd2ef$export$79b67f6e2f31449(...path) {
     return `flags.${0, $1623e5e7c705b7c7$export$2e2bcd8739ae039}.${path.join("/")}`;
 }
 function $ee65ef5b7d5dd2ef$export$bdd507c72609c24e(...path) {
+    path = path.filter((x)=>typeof x === "string");
     return `modules/${0, $1623e5e7c705b7c7$export$2e2bcd8739ae039}/templates/${path.join("/")}`;
 }
 function $ee65ef5b7d5dd2ef$export$6d1a79e7c04100c2(...path) {
@@ -40,6 +41,10 @@ function $b29eb7e0eb12ddbc$export$3bfe3819d89751f0(options) {
         options.name = (0, $ee65ef5b7d5dd2ef$export$f6ed52839c6955bc)(name, "name");
         options.hint = (0, $ee65ef5b7d5dd2ef$export$f6ed52839c6955bc)(name, "hint");
     }
+    if (Array.isArray(options.choices)) options.choices = options.choices.reduce((choices, choice)=>{
+        choices[choice] = (0, $ee65ef5b7d5dd2ef$export$f6ed52839c6955bc)(name, "choices", choice);
+        return choices;
+    }, {});
     game.settings.register((0, $1623e5e7c705b7c7$export$2e2bcd8739ae039), name, options);
 }
 function $b29eb7e0eb12ddbc$export$cd2f7161e4d70860(options) {
@@ -91,7 +96,15 @@ function $889355b5c39241f1$export$b3bd0bc58e36cd63(key, data) {
     return game.i18n.localize(key);
 }
 function $889355b5c39241f1$export$a2435eff6fb7f6c1(subKey) {
-    return (key, data)=>$889355b5c39241f1$export$b3bd0bc58e36cd63(`${subKey}.${key}`, data);
+    const fn = (key, data)=>$889355b5c39241f1$export$b3bd0bc58e36cd63(`${subKey}.${key}`, data);
+    Object.defineProperty(fn, "key", {
+        get () {
+            return subKey;
+        },
+        enumerable: false,
+        configurable: false
+    });
+    return fn;
 }
 
 
@@ -124,6 +137,14 @@ function $3b07b3ae0f2d41b7$export$54f992c69bf0c22c(result) {
 function $3b07b3ae0f2d41b7$export$20ab79f56cb5e678(uuid, name) {
     if (name) return `@UUID[${uuid}]{${name}}`;
     return `@UUID[${uuid}]`;
+}
+function $3b07b3ae0f2d41b7$export$673773a20336d834(name) {
+    return `<span style="background: #DDD;
+    padding: 1px 4px;
+    border: 1px solid var(--color-border-dark-tertiary);
+    border-radius: 2px;
+    white-space: nowrap;
+    word-break: break-all;">${name}</span>`;
 }
 
 
@@ -421,11 +442,12 @@ async function $7ad560a1e531e2cd$export$80a5fb0617c35094({ ownerId: ownerId , ta
     });
     if (!(0, $b29eb7e0eb12ddbc$export$8206e8d612b3e63)("message")) return;
     const msg = qty > 1 ? "notification.withQty" : "notification.withoutQty";
-    const uuid = (0, $3b07b3ae0f2d41b7$export$20ab79f56cb5e678)(newItem.uuid);
+    const link = newItem.isIdentified ? (0, $3b07b3ae0f2d41b7$export$20ab79f56cb5e678)(newItem.uuid) : (0, $3b07b3ae0f2d41b7$export$673773a20336d834)(newItem.name);
+    console.log(newItem, newItem.isIdentified);
     ChatMessage.create({
         content: (0, $889355b5c39241f1$export$b3bd0bc58e36cd63)(msg, {
             qty: qty,
-            item: uuid,
+            item: link,
             target: target.name
         }),
         speaker: ChatMessage.getSpeaker({
