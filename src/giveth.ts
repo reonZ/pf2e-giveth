@@ -1,7 +1,7 @@
 import { localize } from './@utils/foundry/i18n'
 import { warn } from './@utils/foundry/notifications'
 import { getSetting } from './@utils/foundry/settings'
-import { chatUUID } from './@utils/foundry/uuid'
+import { chatUUID, fakeChatUUID } from './@utils/foundry/uuid'
 import { hasInvestedProperty } from './@utils/pf2e'
 import { socketEmit } from './@utils/socket'
 import { MoveLootPopup } from './apps/popup'
@@ -33,9 +33,11 @@ export async function transferItem({ ownerId, targetId, itemId, qty, stack }: Gi
     if (!getSetting('message')) return
 
     const msg = qty > 1 ? 'notification.withQty' : 'notification.withoutQty'
-    const uuid = chatUUID(newItem.uuid)
+    const link = newItem.isIdentified ? chatUUID(newItem.uuid) : fakeChatUUID(newItem.name)
+    console.log(newItem, newItem.isIdentified)
+
     ChatMessage.create({
-        content: localize(msg, { qty, item: uuid, target: target.name }),
+        content: localize(msg, { qty, item: link, target: target.name }),
         speaker: ChatMessage.getSpeaker({ actor: owner }),
     })
 }
