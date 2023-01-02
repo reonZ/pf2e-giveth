@@ -408,7 +408,7 @@ class $8ec64a84f4ed3df5$export$f44f096daab04904 extends FormApplication {
             id: "MoveLootPopup",
             classes: [],
             title: game.i18n.localize("PF2E.loot.MoveLootPopupTitle"),
-            template: "systems/pf2e/templates/popups/loot/move-loot-popup.html",
+            template: "systems/pf2e/templates/popups/loot/move-loot-popup.hbs",
             width: "auto",
             maxQuantity: 1,
             newStack: false,

@@ -1,3 +1,7 @@
+# 1.1.2
+
+-   updated to `4.6.0` template naming
+
 # 1.1.1
 
 -   chat message will now have a non-interactable "link" when the item is mystified

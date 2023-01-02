@@ -27,7 +27,7 @@
                 "type": "system",
                 "manifest": "https://raw.githubusercontent.com/foundryvtt/pf2e/master/system.json",
                 "compatibility": {
-                    "minimum": "4.4.2"
+                    "minimum": "4.6.0"
                 }
             }
         ]
@@ -36,12 +36,12 @@
         "minimum": "10.290",
         "verified": "10"
     },
-    "version": "1.1.1",
+    "version": "1.1.2",
     "manifestPlusVersion": "1.2.0",
     "url": "https://github.com/reonZ/pf2e-giveth",
     "readme": "https://github.com/reonZ/pf2e-giveth/blob/master/README.md",
     "manifest": "https://raw.githubusercontent.com/reonZ/pf2e-giveth/master/module.json",
-    "download": "https://github.com/reonZ/pf2e-giveth/releases/download/1.1.1/module.zip",
+    "download": "https://github.com/reonZ/pf2e-giveth/releases/download/1.1.2/module.zip",
     "changelog": "https://github.com/reonZ/pf2e-giveth/blob/master/CHANGELOG.md",
     "bugs": "https://github.com/reonZ/pf2e-giveth/issues"
 }
