@@ -10,9 +10,7 @@
         }
     ],
     "socket": true,
-    "esmodules": [
-        "scripts/main.js"
-    ],
+    "esmodules": ["scripts/main.js"],
     "languages": [
         {
             "lang": "en",
@@ -33,7 +31,7 @@
         ]
     },
     "compatibility": {
-        "minimum": "10.290",
+        "minimum": "10.291",
         "verified": "10"
     },
     "version": "1.1.2",
