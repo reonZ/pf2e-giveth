@@ -32,12 +32,9 @@ export async function transferItem({ ownerId, targetId, itemId, qty, stack }: Gi
 
     if (!getSetting('message')) return
 
-    const msg = qty > 1 ? 'notification.withQty' : 'notification.withoutQty'
-    const link = newItem.isIdentified ? chatUUID(newItem.uuid) : fakeChatUUID(newItem.name)
-    console.log(newItem, newItem.isIdentified)
-
     ChatMessage.create({
-        content: localize(msg, { qty, item: link, target: target.name }),
+        flavor: `<h4 class="action">${localize('giveth', { target: target.name })}</h4>`,
+        content: newItem.isIdentified ? chatUUID(newItem.uuid) : fakeChatUUID(newItem.name),
         speaker: ChatMessage.getSpeaker({ actor: owner }),
     })
 }

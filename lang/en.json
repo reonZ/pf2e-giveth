@@ -8,6 +8,7 @@
                 "hint": "When enabled, a chat message will be created with the details of the transaction."
             }
         },
+        "giveth": "Giveth to {target}",
         "notification": {
             "withQty": "Giveth {qty} {item} to <strong>{target}</strong>.",
             "withoutQty": "Giveth {item} to <strong>{target}</strong>."
