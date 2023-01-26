@@ -1,3 +1,7 @@
+# 1.1.3
+
+-   modified the giveth message for clarity
+
 # 1.1.2
 
 -   updated to `4.6.0` template naming

@@ -441,15 +441,11 @@ async function $7ad560a1e531e2cd$export$80a5fb0617c35094({ ownerId: ownerId , ta
         "system.quantity": newQty
     });
     if (!(0, $b29eb7e0eb12ddbc$export$8206e8d612b3e63)("message")) return;
-    const msg = qty > 1 ? "notification.withQty" : "notification.withoutQty";
-    const link = newItem.isIdentified ? (0, $3b07b3ae0f2d41b7$export$20ab79f56cb5e678)(newItem.uuid) : (0, $3b07b3ae0f2d41b7$export$673773a20336d834)(newItem.name);
-    console.log(newItem, newItem.isIdentified);
     ChatMessage.create({
-        content: (0, $889355b5c39241f1$export$b3bd0bc58e36cd63)(msg, {
-            qty: qty,
-            item: link,
+        flavor: `<h4 class="action">${(0, $889355b5c39241f1$export$b3bd0bc58e36cd63)("giveth", {
             target: target.name
-        }),
+        })}</h4>`,
+        content: newItem.isIdentified ? (0, $3b07b3ae0f2d41b7$export$20ab79f56cb5e678)(newItem.uuid) : (0, $3b07b3ae0f2d41b7$export$673773a20336d834)(newItem.name),
         speaker: ChatMessage.getSpeaker({
             actor: owner
         })
