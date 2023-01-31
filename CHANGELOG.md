@@ -1,3 +1,7 @@
+# 1.1.4
+
+-   moved the drop hooks into `ready` instead of `init`
+
 # 1.1.3
 
 -   modified the giveth message for clarity

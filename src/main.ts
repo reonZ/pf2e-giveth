@@ -13,13 +13,13 @@ Hooks.once('init', () => {
         default: true,
         config: true,
     })
-
-    if (isGM()) return
-    registerUpstreamHook('dropCanvasData', onDropCanvasData)
-    registerUpstreamHook('dropActorSheetData', onDropActorSheetData)
 })
 
 Hooks.once('ready', () => {
-    if (!game.user.isGM) return
-    socketOn(onPacketReceived)
+    if (game.user.isGM) {
+        socketOn(onPacketReceived)
+    } else {
+        registerUpstreamHook('dropCanvasData', onDropCanvasData)
+        registerUpstreamHook('dropActorSheetData', onDropActorSheetData)
+    }
 })
