@@ -61,25 +61,6 @@ function $b29eb7e0eb12ddbc$export$8cb4a6769fa1780e() {
 }
 
 
-function $d3c956a52a17449c$export$7d75da6d34f1a955() {
-    const data = game.data;
-    const user = data.users.find((x)=>x._id === data.userId);
-    return !!user && user.role >= CONST.USER_ROLES.GAMEMASTER;
-}
-function $d3c956a52a17449c$export$148de59b68ce26ae(doc, connected = false) {
-    if (connected) return game.users.filter((x)=>x.active && doc.testUserPermission(x, "OWNER"));
-    return game.users.filter((x)=>doc.testUserPermission(x, "OWNER"));
-}
-function $d3c956a52a17449c$export$5f4ed0d56c2c0edf(doc, connected = false) {
-    if (connected) return game.users.find((x)=>x.active && doc.testUserPermission(x, "OWNER"));
-    return game.users.find((x)=>doc.testUserPermission(x, "OWNER"));
-}
-function $d3c956a52a17449c$export$31d9ed870e9f0a1d(connected = false) {
-    if (connected) return game.users.find((x)=>x.active && x.isGM);
-    return game.users.find((x)=>x.isGM);
-}
-
-
 
 function $7d0b581a56a65cc7$export$38fd5ae0f7102bdb(callback) {
     game.socket.on(`module.${(0, $1623e5e7c705b7c7$export$2e2bcd8739ae039)}`, callback);
@@ -377,6 +358,46 @@ function $1411bf92270cf048$export$d2ea10be675672b(source) {
 function $1411bf92270cf048$export$9e72cd1a981905c2(source) {
     return (0, $39b388830effa69c$export$7fd671bc170c6856)($1411bf92270cf048$export$c6f5f26a78b4295b, source.type);
 }
+function $1411bf92270cf048$export$44db2df49f4dbb6d(actor, itemType, id) {
+    return actor.itemTypes[itemType].find((x)=>x.getFlag("core", "sourceId") === id);
+}
+const $1411bf92270cf048$export$c4de6253c838d60a = "tLa4bewBhyqzi6Ow";
+const $1411bf92270cf048$export$132139220723bb42 = {
+    1: "RjuupS9xyXDLgyIr",
+    2: "Y7UD64foDbDMV9sx",
+    3: "ZmefGBXGJF3CFDbn",
+    4: "QSQZJ5BC3DeHv153",
+    5: "tjLvRWklAylFhBHQ",
+    6: "4sGIy77COooxhQuC",
+    7: "fomEZZ4MxVVK3uVu",
+    8: "iPki3yuoucnj7bIt",
+    9: "cFHomF3tty8Wi1e5",
+    10: "o1XIHJ4MJyroAHfF"
+};
+const $1411bf92270cf048$var$wandCompendiumIds = {
+    1: "UJWiN0K3jqVjxvKk",
+    2: "vJZ49cgi8szuQXAD",
+    3: "wrDmWkGxmwzYtfiA",
+    4: "Sn7v9SsbEDMUIwrO",
+    5: "5BF7zMnrPYzyigCs",
+    6: "kiXh4SUWKr166ZeM",
+    7: "nmXPj9zuMRQBNT60",
+    8: "Qs8RgNH6thRPv2jt",
+    9: "Fgv722039TVM5JTc"
+};
+function $1411bf92270cf048$export$759f065e99467277(level) {
+    return `Compendium.pf2e.equipment-srd.${$1411bf92270cf048$export$132139220723bb42[level]}`;
+}
+function $1411bf92270cf048$export$b2d71906274eb828(type, heightenedLevel) {
+    switch(type){
+        case "cantripDeck5":
+            return $1411bf92270cf048$export$c4de6253c838d60a;
+        case "scroll":
+            return $1411bf92270cf048$export$132139220723bb42[heightenedLevel] ?? null;
+        default:
+            return $1411bf92270cf048$var$wandCompendiumIds[heightenedLevel] ?? null;
+    }
+}
 
 
 
@@ -537,13 +558,13 @@ Hooks.once("init", ()=>{
         default: true,
         config: true
     });
-    if ((0, $d3c956a52a17449c$export$7d75da6d34f1a955)()) return;
-    (0, $b1861437201343a3$export$e086df5a71e51694)("dropCanvasData", (0, $c5e8e0cfa8a822f8$export$817ceb6b274ad24));
-    (0, $b1861437201343a3$export$e086df5a71e51694)("dropActorSheetData", (0, $026f2657de0e8ef5$export$ac56a867a4859d7c));
 });
 Hooks.once("ready", ()=>{
-    if (!game.user.isGM) return;
-    (0, $7d0b581a56a65cc7$export$38fd5ae0f7102bdb)((0, $e6fcaa473751f33b$export$77349932e6536f4d));
+    if (game.user.isGM) (0, $7d0b581a56a65cc7$export$38fd5ae0f7102bdb)((0, $e6fcaa473751f33b$export$77349932e6536f4d));
+    else {
+        (0, $b1861437201343a3$export$e086df5a71e51694)("dropCanvasData", (0, $c5e8e0cfa8a822f8$export$817ceb6b274ad24));
+        (0, $b1861437201343a3$export$e086df5a71e51694)("dropActorSheetData", (0, $026f2657de0e8ef5$export$ac56a867a4859d7c));
+    }
 });
 
 
