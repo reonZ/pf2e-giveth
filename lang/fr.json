@@ -1,1 +1,17 @@
-{}
+{
+    "pf2e-giveth": {
+        "zero": "Vous ne pouvez donner un objet que vous ne possédez pas vous-même.",
+        "settings": {
+            "message": {
+                "hint": "Lorsqu'activé, un message sera créé dans la conversation avec les détails de la transaction.",
+                "name": "Notification dans la conversation"
+            }
+        },
+        "physical": "Seuls les objets physiques peuvent être donnés.",
+        "giveth": "Donné à {cible}",
+        "notification": {
+            "withQty": "donne {qty} {item}(s) à <strong>{target}</strong>.",
+            "withoutQty": "donne {item} à <strong>{target}</strong>."
+        }
+    }
+}
