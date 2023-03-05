@@ -2,6 +2,8 @@
 
 This module will allow players to give items to actors owned by the other players without any fuss, a simple drag & drop on a token or actor sheet and voila.
 
+Players can also drag & drop effects and conditions that originated from them onto another actor that is owned by a player (the effect will lose its `unidentified` status and will have its `showIcon` set to `true` to avoid any possible weirdness).
+
 # Settings
 
 ## Chat Notification

@@ -1,3 +1,8 @@
+# 1.2.0
+
+-   will now show the number of items transfered in chat message
+-   the module now allows players to drag & drop effects and conditions that originated from them onto other player-owned actors (the effect will lose its `unidentified` status and will have its `showIcon` set to `true` to avoid any possible weirdness)
+
 # 1.1.4
 
 -   moved the drop hooks into `ready` instead of `init`
