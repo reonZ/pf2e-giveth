@@ -34,6 +34,11 @@
             "lang": "fr",
             "name": "Français",
             "path": "lang/fr.json"
+        },
+        {
+            "lang": "ru",
+            "name": "Русский",
+            "path": "lang/ru.json"
         }
     ],
     "socket": true,
