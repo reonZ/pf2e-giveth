@@ -1,3 +1,7 @@
+# 1.2.1
+
+-   make sure only one GM runs the giveth requests
+
 # 1.2.0
 
 -   will now show the number of items transfered in chat message
