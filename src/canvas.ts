@@ -1,7 +1,9 @@
 import { giveth } from './giveth'
-import { getDetailsFromData, isValidActor } from './utils'
+import { getDetailsFromData, isGMOnline, isValidActor } from './utils'
 
-export function onDropCanvasData(canvas: Canvas, data: DropCanvasData) {
+export function onDropCanvasData(canvas: CanvasPF2e, data: DropCanvasItemDataPF2e) {
+    if (!isGMOnline()) return true
+
     const details = getDetailsFromData(data)
     if (!details) return true
 
@@ -9,10 +11,8 @@ export function onDropCanvasData(canvas: Canvas, data: DropCanvasData) {
         .slice()
         .filter(token => {
             if (!token.document.actorLink) return false
-
-            const target = token.actor as ActorPF2e
+            const target = token.actor
             if (!isValidActor(target, data.actorId) || target.isOwner) return false
-
             const maximumX = token.x + (token.hitArea?.right ?? 0)
             const maximumY = token.y + (token.hitArea?.bottom ?? 0)
             return data.x >= token.x && data.y >= token.y && data.x <= maximumX && data.y <= maximumY
@@ -22,6 +22,6 @@ export function onDropCanvasData(canvas: Canvas, data: DropCanvasData) {
 
     if (!target) return true
 
-    giveth(details.actor, target as ActorPF2e, details.item)
+    giveth(details.actor, target, details.item, details.value)
     return false
 }

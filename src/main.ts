@@ -1,10 +1,13 @@
-import { registerUpstreamHook } from './@utils/foundry/hook'
-import { registerSetting } from './@utils/foundry/settings'
-import { isGM } from './@utils/foundry/user'
-import { socketOn } from './@utils/socket'
+import { setModuleID } from '@utils/module'
+import { socketOn } from '@utils/socket'
+import { registerUpstreamHook } from '@utils/foundry/hook'
+import { registerSetting } from '@utils/foundry/settings'
 import { onDropCanvasData } from './canvas'
 import { onDropActorSheetData } from './sheet'
-import { onPacketReceived } from './socket'
+import { takethCondition, takethEffect, takethPhysical } from './taketh'
+
+export const MODULE_ID = 'pf2e-giveth'
+setModuleID(MODULE_ID)
 
 Hooks.once('init', () => {
     registerSetting({
@@ -17,9 +20,15 @@ Hooks.once('init', () => {
 
 Hooks.once('ready', () => {
     if (game.user.isGM) {
-        socketOn(onPacketReceived)
+        socketOn<Packet>(onPacketReceived)
     } else {
         registerUpstreamHook('dropCanvasData', onDropCanvasData)
         registerUpstreamHook('dropActorSheetData', onDropActorSheetData)
     }
 })
+
+function onPacketReceived(packet: Packet) {
+    if (packet.type === 'giveth-condition') takethCondition(packet)
+    else if (packet.type === 'giveth-effect') takethEffect(packet)
+    else takethPhysical(packet)
+}

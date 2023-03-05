@@ -1,16 +1,11 @@
-type Packet = GivethData & {
-    type: 'giveth'
-}
+declare const game: GamePF2e
+declare const canvas: CanvasPF2e
+declare const ui: UiPF2e
+declare const CONFIG: ConfigPF2e
 
-type GivethData = {
-    ownerId: string
-    targetId: string
-    itemId: string
-    qty: number
-    stack: boolean
-}
+type GivethItem = Required<CompendiumIndexData> | PhysicalItemPF2e | EffectPF2e
 
-declare interface MoveLootOptions extends FormApplicationOptions {
+interface MoveLootOptions extends FormApplicationOptions {
     maxQuantity: number
     newStack: boolean
     lockStack: boolean
@@ -22,4 +17,26 @@ interface MoveLootFormData extends FormData {
     newStack: boolean
 }
 
-declare type MoveLootCallback = (quantity: number, newStack: boolean) => void
+type MoveLootCallback = (quantity: number, newStack: boolean) => void
+
+type BasePacket<T extends 'giveth-physical' | 'giveth-effect' | 'giveth-condition'> = SocketPacket<T> & {
+    targetId: string
+}
+
+type PhysicalPacket = BasePacket<'giveth-physical'> & {
+    itemId: string
+    ownerId: string
+    qty: number
+    stack: boolean
+}
+
+type EffectPacket = BasePacket<'giveth-effect'> & {
+    uuid: ItemUUID
+}
+
+type ConditionPacket = BasePacket<'giveth-condition'> & {
+    uuid: ItemUUID
+    value: number
+}
+
+type Packet = PhysicalPacket | EffectPacket | ConditionPacket
