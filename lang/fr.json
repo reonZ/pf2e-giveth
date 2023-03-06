@@ -11,7 +11,8 @@
         "giveth": "Donné à {cible}",
         "notification": {
             "withQty": "donne {qty} {item}(s) à <strong>{target}</strong>.",
-            "withoutQty": "donne {item} à <strong>{target}</strong>."
+            "withoutQty": "donne {item} à <strong>{target}</strong>.",
+            "zero": "Vous ne pouvez pas donner un objet que vous ne possédez pas."
         }
     }
 }
