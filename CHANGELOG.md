@@ -1,3 +1,7 @@
+# 1.3.1
+
+-   removed russian localization because of conflicts
+
 # 1.3.0
 
 -   added french localization (thanks to [rectulo](https://github.com/rectulo))
