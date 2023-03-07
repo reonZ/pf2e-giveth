@@ -11,7 +11,8 @@
         "giveth": "Отдает {target}",
         "notification": {
             "withQty": "Отдает {qty} {item} <strong>{target}</strong>.",
-            "withoutQty": "Отдает {item} <strong>{target}</strong>."
+            "withoutQty": "Отдает {item} <strong>{target}</strong>.",
+            "zero": "Вы не можете отдать предмет, которого у вас нет."
         }
     }
 }
