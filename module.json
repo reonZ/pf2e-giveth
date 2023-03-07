@@ -9,9 +9,7 @@
             "discord": "Idle#3251"
         }
     ],
-    "esmodules": [
-        "scripts/main.js"
-    ],
+    "esmodules": ["scripts/main.js"],
     "compatibility": {
         "minimum": "10.291",
         "verified": "10"
@@ -34,11 +32,6 @@
             "lang": "fr",
             "name": "Français",
             "path": "lang/fr.json"
-        },
-        {
-            "lang": "ru",
-            "name": "Русский",
-            "path": "lang/ru.json"
         }
     ],
     "socket": true,
