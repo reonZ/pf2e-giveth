@@ -1,3 +1,12 @@
+# 1.3.1
+
+-   removed russian localization because of conflicts
+
+# 1.3.0
+
+-   added french localization (thanks to [rectulo](https://github.com/rectulo))
+-   added russian localization (thanks to [DoctorDankovsky](https://github.com/DoctorDankovsky))
+
 # 1.2.1
 
 -   make sure only one GM runs the giveth requests
