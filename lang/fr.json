@@ -1,18 +1,16 @@
 {
     "pf2e-giveth": {
-        "zero": "Vous ne pouvez donner un objet que vous ne possédez pas vous-même.",
         "settings": {
             "message": {
-                "hint": "Lorsqu'activé, un message sera créé dans la conversation avec les détails de la transaction.",
-                "name": "Notification dans la conversation"
+                "name": "Notification dans la conversation",
+                "hint": "Lorsqu'activé, un message sera créé dans la conversation avec les détails de la transaction."
             }
         },
-        "physical": "Seuls les objets physiques peuvent être donnés.",
         "giveth": "Donné à {cible}",
         "notification": {
+            "zero": "Vous ne pouvez donner un objet que vous ne possédez pas vous-même.",
             "withQty": "donne {qty} {item}(s) à <strong>{target}</strong>.",
-            "withoutQty": "donne {item} à <strong>{target}</strong>.",
-            "zero": "Vous ne pouvez pas donner un objet que vous ne possédez pas."
+            "withoutQty": "donne {item} à <strong>{target}</strong>."
         }
     }
 }

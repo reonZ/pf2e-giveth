@@ -1,7 +1,5 @@
 {
     "pf2e-giveth": {
-        "physical": "Можно отдавать только физические предметы.",
-        "zero": "Вы не можете отдать предмет, которого у вас нет.",
         "settings": {
             "message": {
                 "name": "Уведомление в чате",
@@ -10,6 +8,7 @@
         },
         "giveth": "Отдает {target}",
         "notification": {
+            "zero": "Вы не можете отдать предмет, которого у вас нет.",
             "withQty": "Отдает {qty} {item} <strong>{target}</strong>.",
             "withoutQty": "Отдает {item} <strong>{target}</strong>."
         }
