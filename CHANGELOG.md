@@ -1,3 +1,8 @@
+# 1.3.2
+
+-   updated french localization (thanks to [rectulo](https://github.com/rectulo))
+-   added chinese localization (thanks to [LiyuNodream](https://github.com/LiyuNodream))
+
 # 1.3.1
 
 -   removed russian localization because of conflicts
