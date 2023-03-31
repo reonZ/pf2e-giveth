@@ -1,3 +1,7 @@
+# 1.3.3
+
+-   added chinese traditional localization option
+
 # 1.3.2
 
 -   updated french localization (thanks to [rectulo](https://github.com/rectulo))
