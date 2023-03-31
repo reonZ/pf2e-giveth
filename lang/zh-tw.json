@@ -1,0 +1,16 @@
+{
+    "pf2e-giveth": {
+        "settings": {
+            "message": {
+                "name": "聊天通知",
+                "hint": "啓用后，有關交易細節的聊天訊息將被發送。"
+            }
+        },
+        "giveth": "給予 {target}",
+        "notification": {
+            "zero": "你不能給予一項你沒有的東西。",
+            "withQty": "將 {qty} {item} 給予 <strong>{target}</strong>.",
+            "withoutQty": "將 {item} 給予 <strong>{target}</strong>."
+        }
+    }
+}
