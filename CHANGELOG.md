@@ -1,3 +1,7 @@
+# 1.3.4
+
+-   fixed issue with latest system version `4.11.0`
+
 # 1.3.3
 
 -   added chinese traditional localization option
