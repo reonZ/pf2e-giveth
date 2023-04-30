@@ -1,6 +1,6 @@
 # 1.3.4
 
--   fixed issue with latest system version `4.11.0`
+-   fixed issue with latest system version `4.11.x`
 
 # 1.3.3
 
