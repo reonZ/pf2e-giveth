@@ -3,14 +3,15 @@ export function getDetailsFromData(
 ): { actor: ActorPF2e; item: GivethItem; value?: number } | undefined {
     if (data.tokenId || data.type !== 'Item' || !data.uuid) return
 
-    const actorId = data.actorId ?? data.context?.origin.actor.split('.').at(-1)
-    if (!actorId) return
-
-    const actor = game.actors.get(actorId)
-    if (!isValidActor(actor) || !actor.isOwner) return
-
     const item = fromUuidSync(data.uuid) as GivethItem
     if (!item) return
+
+    let actor: ActorPF2e | null = item.actor
+    if (!actor) {
+        const actorUUID = data.context?.origin.actor
+        actor = actorUUID ? fromUuidSync<ActorPF2e>(actorUUID) : null
+    }
+    if (!isValidActor(actor) || !actor.isOwner) return
 
     const isIndex = !(item instanceof Item)
     if (isIndex && item.pack && ['effect', 'condition'].includes(item.type)) return { actor, item, value: data.value }
