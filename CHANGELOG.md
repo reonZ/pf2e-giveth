@@ -1,3 +1,8 @@
+# 1.4.0
+
+-   compatible with v11
+-   you cannot drop an item onto another character's sheet anymore, the system is preventing it, you can only drop them on tokens
+
 # 1.3.4
 
 -   fixed issue with latest system version `4.11.x`
