@@ -1,5 +1,7 @@
 # FoundryVTT PF2e Giveth
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K6M2V13)
+
 **IMPORTANT: A GM needs to be logged into your world to allow players to giveth their hard earned belongings.**
 
 This module will allow players to give items to actors owned by the other players without any fuss, a simple drag & drop on a token or actor sheet and voila.
