@@ -1,8 +1,6 @@
-import { warn } from '@utils/foundry/notification'
-import { MoveLootPopup } from '@apps/popup'
-import { socketEmit } from '@utils/socket'
+import { socketEmit, warn } from './module'
 
-export function giveth(origin: ActorPF2e, target: ActorPF2e, item: GivethItem, value: number | undefined) {
+export function giveth(origin, target, item, value) {
     const ownerId = origin.id
     const targetId = target.id
     const isIndex = !(item instanceof Item)
@@ -17,16 +15,16 @@ export function giveth(origin: ActorPF2e, target: ActorPF2e, item: GivethItem, v
             sendPhysicalRequest(ownerId, targetId, item.id, qty, stack)
         }).render(true)
     } else {
-        const uuid: ItemUUID = isIndex ? `Compendium.${item.pack}.${item._id}` : item.uuid
+        const uuid = isIndex ? `Compendium.${item.pack}.${item._id}` : item.uuid
         if (item.type === 'condition') {
-            socketEmit<ConditionPacket>({
+            socketEmit({
                 type: 'giveth-condition',
                 targetId,
                 value: value ?? 1,
                 uuid,
             })
         } else {
-            socketEmit<EffectPacket>({
+            socketEmit({
                 type: 'giveth-effect',
                 targetId,
                 uuid,
@@ -35,8 +33,8 @@ export function giveth(origin: ActorPF2e, target: ActorPF2e, item: GivethItem, v
     }
 }
 
-function sendPhysicalRequest(ownerId: string, targetId: string, itemId: string, qty: number, stack: boolean) {
-    socketEmit<PhysicalPacket>({
+function sendPhysicalRequest(ownerId, targetId, itemId, qty, stack) {
+    socketEmit({
         type: 'giveth-physical',
         ownerId,
         targetId,

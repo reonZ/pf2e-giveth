@@ -1,13 +1,10 @@
-export class MoveLootPopup extends FormApplication<{}, MoveLootOptions> {
-    onSubmitCallback: MoveLootCallback
-
-    constructor(object: ActorPF2e, options: Partial<MoveLootOptions>, callback: MoveLootCallback) {
+export class MoveLootPopup extends FormApplication {
+    constructor(object, options, callback) {
         super(object, options)
-
         this.onSubmitCallback = callback
     }
 
-    override async getData() {
+    async getData() {
         const [prompt, buttonLabel] = this.options.isPurchase
             ? ['PF2E.loot.PurchaseLootMessage', 'PF2E.loot.PurchaseLoot']
             : ['PF2E.loot.MoveLootMessage', 'PF2E.loot.MoveLoot']
@@ -22,7 +19,7 @@ export class MoveLootPopup extends FormApplication<{}, MoveLootOptions> {
         }
     }
 
-    static override get defaultOptions(): MoveLootOptions {
+    static get defaultOptions() {
         return {
             ...super.defaultOptions,
             id: 'MoveLootPopup',
@@ -37,7 +34,7 @@ export class MoveLootPopup extends FormApplication<{}, MoveLootOptions> {
         }
     }
 
-    override async _updateObject(_event: ElementDragEvent, formData: Record<string, unknown> & MoveLootFormData): Promise<void> {
+    async _updateObject(_event, formData) {
         this.onSubmitCallback(formData.quantity, formData.newStack)
     }
 }

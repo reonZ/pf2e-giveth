@@ -1,7 +1,8 @@
 import { giveth } from './giveth'
-import { getDetailsFromData, isGMOnline, isValidActor } from './utils'
+import { isGMOnline } from './module'
+import { getDetailsFromData, isValidActor } from './utils'
 
-export function onDropCanvasData(canvas: CanvasPF2e, data: DropCanvasItemDataPF2e) {
+export function onDropCanvasData(canvas, data) {
     if (!isGMOnline()) return true
 
     const details = getDetailsFromData(data)
